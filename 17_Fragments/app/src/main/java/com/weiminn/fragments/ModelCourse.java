@@ -2,10 +2,9 @@ package com.weiminn.fragments;
 
 public enum ModelCourse {
 
-    RED(R.string.red, R.layout.view_red);
-
-    GREEN(R.string.green, R.layout.view_green)
-    BLUE(R.string.blue, R.layout.view_blue)
+    RED(R.string.red, R.layout.view_red),
+    GREEN(R.string.green, R.layout.view_green),
+    BLUE(R.string.blue, R.layout.view_blue);
 
     private int mTitleID;
     private int mLayoutID;

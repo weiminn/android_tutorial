@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
 
 public class MyPagerAdapter extends PagerAdapter {
@@ -16,6 +17,7 @@ public class MyPagerAdapter extends PagerAdapter {
         this.mContext = mContext;
     }
 
+
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
@@ -23,6 +25,7 @@ public class MyPagerAdapter extends PagerAdapter {
         ModelCourse modelCourse = ModelCourse.values()[position];
         LayoutInflater inflater = LayoutInflater.from(mContext);
 
+        // inflate ViewGroup instead of View
         ViewGroup layout = (ViewGroup) inflater.inflate(
                 modelCourse.getmLayoutID(),
                 container,
@@ -30,11 +33,6 @@ public class MyPagerAdapter extends PagerAdapter {
 
         container.addView(layout);
         return layout;
-    }
-
-    @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        super.destroyItem(container, position, object);
     }
 
     /**
@@ -56,6 +54,13 @@ public class MyPagerAdapter extends PagerAdapter {
      */
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return false;
+        return view == object;
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        ModelCourse customPagerEnum = ModelCourse.values()[position];
+        return mContext.getString(customPagerEnum.getmTitleID());
     }
 }
